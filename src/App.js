@@ -15,8 +15,16 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate replace to="/welcome" />} />
 
-          <Route path="/welcome/*" element={<Welcome />} />
+          <Route path="/welcome/*" element={<Welcome />}>
+            {/*   -- Nested Route 👇👇👇
+                  〰 content inside the nested route will be laoded when url path is  ' path="/welcome/new-user" ' 
+                  〰 HAVE to tell react-router where to insert the nested route content, inside the '<Welcome/>' component, if the route matches, by using the '<Outlet/>' component in the '<Welcome/>' component
+            */}
+            <Route path="user-login" element={<p>This is a nested Route.</p>} />
+          </Route>
+
           <Route path="/products" element={<Products />} />
+
           <Route path="/products/:productId" element={<ProductDetail />} />
         </Routes>
       </main>
